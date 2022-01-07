@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../layouts/head') %>
+  </head>
+  <header>
+    <title>Pouring Calculator</title>
+  </header>
+  <body>
+    <label for="www">Weight with Wax</label>
+    <input type="number" id="www" name="www" value="16" />
+    <button class="wwwButton">Enter</button> </br>
+    <label for="answer">Final Weight</label>
+    <div class="answer" name="answer"></div>
+  </body>
+  <footer><%- include('../layouts/footer') %></footer>
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
+  <script src="/js/app.js"></script>
+</html>
