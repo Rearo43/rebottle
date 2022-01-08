@@ -4,17 +4,21 @@
     <%- include('../layouts/head') %>
   </head>
   <header>
-    <title>Pouring Calculator</title>
+    <title>Inventory</title>
   </header>
   <body>
-    <form method="post" action="/add">
-    <label for="www">Weight with Wax</label>
-    <input type="number" id="www" name="www" value="16" />
-    <button class="wwwButton">Enter</button> 
-    </form>
-  </br>
-    <label for="answer">Final Weight</label>
-    <div class="answer" name="answer"></div>
+<table>
+    <tr>
+    <th>Name</th>
+    <th>Scent</th>
+    </tr>
+    <% output.forEach(object=>{ %>
+        <tr>
+            <td><%= object.name %> </td>
+            <td><%= object.scent %> </td>
+        </tr>
+    <% }) %>
+    </table>
   </body>
   <footer><%- include('../layouts/footer') %></footer>
   <script
