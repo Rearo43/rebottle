@@ -6,7 +6,7 @@ $('.wwwButton').click(function () {
   let lb = input / 16;
   // console.log(lb);
   let final = lb + input;
-  $(".answer").text(final);
+  $('.answer').text(final);
   // console.log(input);
   // console.log(final);
 });

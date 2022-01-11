@@ -1,0 +1,44 @@
+body {
+  margin-top: 20%;
+  margin-left: 10%;
+  background-color: #2c3531;
+}
+h1 {
+  font-family: 'Orelega One', cursive;
+  font-weight: 100;
+  margin-bottom: 100px;
+  font-size: 6vw;
+}
+
+div {
+  width: 10vw;
+  background-image: linear-gradient(90deg, #2c3531, white);
+  height: 10vw;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 17vw;
+  display: inline-block;
+  position: relative;
+  box-shadow: 5px 6px 10px 2px rgba(41, 41, 44, 0.2);
+  margin-right: 7%;
+}
+
+i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 17%;
+  transform: translate(34%, 70%);
+}
+
+div:hover {
+  background-image: linear-gradient(90deg, #188b8d, white);
+}
+i:hover {
+  color: #2c3531;
+}
+
+.fas {
+  font-size: 4vw;
+  color: #188b8d;
+}
