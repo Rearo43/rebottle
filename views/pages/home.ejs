@@ -2,19 +2,38 @@
 <html lang="en">
   <head>
     <%- include('../layouts/head') %>
+    <link rel="stylesheet" href="/styles/home.css" />
+        <script
+    src="https://kit.fontawesome.com/fc85feb03c.js"
+    crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
   </head>
   <header>
-    <title>Pouring Calculator</title>
+      <h1>ReBottle Inventory System </h1>
   </header>
   <body>
-    <form method="post" action="/add">
-    <label for="www">Weight with Wax</label>
-    <input type="number" id="www" name="www" value="16" />
-    <button class="wwwButton">Enter</button> 
-    </form>
-  </br>
-    <label for="answer">Final Weight</label>
-    <div class="answer" name="answer"></div>
+    <menu>
+        <ul>
+          <div>
+            <i class="fas fa-calculator"></i>
+          </div>
+          <div>
+              <i class="fas fa-fill-drip"></i>
+            </div>
+            <div>
+                <i class="fas fa-list-ul"></i>
+            </div>
+            <div>
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <div>
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </ul>
+    </menu>
   </body>
   <footer><%- include('../layouts/footer') %></footer>
   <script

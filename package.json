@@ -2,9 +2,12 @@
   "name": "rebottle",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "watch 'npm run build' src",
+    "watch": "watch 'npm run build' ../rebottle",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,8 @@
     "express": "^4.17.2",
     "morgan": "^1.10.0",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "watch": "^1.0.2"
   }
 }

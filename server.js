@@ -19,7 +19,9 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
 app.get('/', home);
-app.post('/add', saveToDataBase);
+app.get('/add', saveToDataBase);
+app.get('/scent', scent);
+app.post('/addInventory', addInventory);
 app.get('/inventory', inventory);
 app.use('*', routeNotFound);
 app.use(bigError);
@@ -29,27 +31,43 @@ function home(req, res) {
 }
 
 function saveToDataBase(req, res) {
-  console.log(req);
-  const SQL = 'INSERT INTO name VALUES $1';
+  res.status(200).render('pages/add');
+}
 
-  database
-    .query('Reagan')
-    .then((data) => {
-      res.status(200).redirect('/');
-    })
-    .catch((error) => bigError(error, res));
+function addInventory(req, res) {
+  let input = req.body;
+  console.log(input);
+  const SQL = 'INSERT INTO candles (name, scent) VALUES ($1, $2)';
+  const param = [input.name, input.scent];
+  client.query(SQL, param);
+  res.redirect('/add');
 }
 
 function inventory(req, res) {
   let SQL = `SELECT * FROM candles`;
-//   let sql = `SELECT * FROM scent`;
+  //   let sql = `SELECT * FROM scent`;
 
   client
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
       res.render('pages/inventory', { output: dataBaseInfo });
-      console.log(dataBaseInfo);
+      // console.log(dataBaseInfo);
+    })
+    .catch((err) => console.log(err));
+}
+
+function scent(req, res) {
+  let SQL = `SELECT * FROM scent`;
+  //   let sql = `SELECT * FROM scent`;
+
+  client
+    .query(SQL)
+    .then((results) => {
+      let dataBaseInfo = results.rows;
+      console.log(dataBaseInfo.name, dataBaseInfo.amount);
+      res.render('pages/scent', { output: dataBaseInfo });
+      // console.log(dataBaseInfo);
     })
     .catch((err) => console.log(err));
 }
