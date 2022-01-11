@@ -15,7 +15,7 @@ CREATE TABLE scent
     amount DECIMAL(8,2)
 );
 
-INSERT INTO candles (name, scent) VALUES (('Do I Smell Pie', 'Apple Jack & Peel')('Not Just For New Years', 'A Thousand Wishes'))RETURNING *;
+INSERT INTO candles (name, scent) VALUES ('Do I Smell Pie', 'Apple Jack & Peel')RETURNING *;
 
 INSERT INTO scent (name, amount) VALUES ('Apple Jack & Peel', '32') RETURNING *;
 

@@ -19,55 +19,62 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
 app.get('/', home);
-app.get('/add', saveToDataBase);
+app.get('/inventory', inventory);
 app.get('/scent', scent);
 app.post('/addInventory', addInventory);
-app.get('/inventory', inventory);
+app.post('/addScent', addScent);
 app.use('*', routeNotFound);
 app.use(bigError);
 
+//----------Home
 function home(req, res) {
   res.status(200).render('pages/home');
 }
 
-function saveToDataBase(req, res) {
-  res.status(200).render('pages/add');
-}
-
+//----------Candles in Database
 function addInventory(req, res) {
   let input = req.body;
-  console.log(input);
   const SQL = 'INSERT INTO candles (name, scent) VALUES ($1, $2)';
   const param = [input.name, input.scent];
+
   client.query(SQL, param);
-  res.redirect('/add');
+  res.redirect('/inventory');
 }
 
+//----------Show Inventory
 function inventory(req, res) {
   let SQL = `SELECT * FROM candles`;
-  //   let sql = `SELECT * FROM scent`;
 
   client
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
+
       res.render('pages/inventory', { output: dataBaseInfo });
-      // console.log(dataBaseInfo);
     })
     .catch((err) => console.log(err));
 }
 
+//----------Scents into Database
+function addScent(req, res) {
+  let input = req.body;
+  const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
+  const param = [input.name, input.amount];
+
+  client.query(SQL, param);
+  res.redirect('/scent');
+}
+
+//----------Show Scents
 function scent(req, res) {
   let SQL = `SELECT * FROM scent`;
-  //   let sql = `SELECT * FROM scent`;
 
   client
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
-      console.log(dataBaseInfo.name, dataBaseInfo.amount);
+
       res.render('pages/scent', { output: dataBaseInfo });
-      // console.log(dataBaseInfo);
     })
     .catch((err) => console.log(err));
 }
