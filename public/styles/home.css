@@ -42,3 +42,8 @@ i:hover {
   font-size: 4vw;
   color: #188b8d;
 }
+
+a {
+  width: 100px;
+  height: 100px;
+}
