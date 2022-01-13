@@ -20,9 +20,11 @@ app.set('view engine', 'ejs');
 
 app.get('/', home);
 app.get('/inventory', inventory);
-app.get('/scent', scent);
+app.get('/calc', calc);
+app.get('/scents', scents);
 app.post('/addInventory', addInventory);
-app.post('/addScent', addScent);
+app.post('/addCalc', addCalc);
+app.post('/addScents', addScents);
 app.use('*', routeNotFound);
 app.use(bigError);
 
@@ -34,8 +36,9 @@ function home(req, res) {
 //----------Candles in Database
 function addInventory(req, res) {
   let input = req.body;
-  const SQL = 'INSERT INTO candles (name, scent) VALUES ($1, $2)';
-  const param = [input.name, input.scent];
+  const SQL =
+    'INSERT INTO candles (name, scent, amount, num) VALUES ($1, $2, $3, $4)';
+  const param = [input.name, input.scent, input.amount, input.num];
 
   client.query(SQL, param);
   res.redirect('/inventory');
@@ -55,18 +58,17 @@ function inventory(req, res) {
     .catch((err) => console.log(err));
 }
 
-//----------Scents into Database
-function addScent(req, res) {
+//----------Change Database With Calculation
+function addCalc(req, res) {
   let input = req.body;
   const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
   const param = [input.name, input.amount];
 
   client.query(SQL, param);
-  res.redirect('/scent');
+  res.redirect('/calc');
 }
 
-//----------Show Scents
-function scent(req, res) {
+function calc(req, res) {
   let SQL = `SELECT * FROM scent`;
 
   client
@@ -74,7 +76,30 @@ function scent(req, res) {
     .then((results) => {
       let dataBaseInfo = results.rows;
 
-      res.render('pages/scent', { output: dataBaseInfo });
+      res.render('pages/scents', { output: dataBaseInfo });
+    })
+    .catch((err) => console.log(err));
+}
+
+//----------Scents in Database
+function addScents(req, res) {
+  let input = req.body;
+  const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
+  const param = [input.name, input.amount];
+
+  client.query(SQL, param);
+  res.redirect('/scents');
+}
+//----------Show Scents
+function scents(req, res) {
+  let SQL = `SELECT * FROM scent`;
+
+  client
+    .query(SQL)
+    .then((results) => {
+      let dataBaseInfo = results.rows;
+
+      res.render('pages/scents', { output: dataBaseInfo });
     })
     .catch((err) => console.log(err));
 }
