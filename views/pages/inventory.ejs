@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <%- include('../layouts/head') %>
-    <link rel="stylesheet" href="/styles/base.css" />
+
+    <link rel="stylesheet" href="/styles/inventory.css" /> 
   </head>
   <header>
-    <title>Inventory</title>
+    <h1>Inventory</h1>
   </header>
   <body>
-    <form action="/update" method="post">
+    <form class="updateForm" action="/update" method="post">
       <label for="name">Choose a candle:</label>
 
       <select name="name" id="name" multiple>
@@ -24,29 +25,33 @@
       <label for="num">In Stock</label><br />
 
       <label for="value">Value</label>
-      <input type="number" name="value" step="0.01"/>
+      <input type="number" name="value" step="0.01" />
 
       <button type="submit">Update</button>
     </form>
 
-    <form action="/addInventory" method="post">
+    <form class="addForm" action="/addInventory" method="post">
+      <div class="addF">
       <label for="name">Name</label>
-      <input type="text" name="name" />
+      <input type="text" name="name" /></br>
       <label for="scent">Scent</label>
-      <input type="text" name="scent" />
+      <input type="text" name="scent" /></br>
       <label for="amount">Amount</label>
-      <input type="number" name="amount" step="0.01" />
+      <input type="number" name="amount" step="0.01" /></br>
       <label for="num">Number</label>
-      <input type="number" name="num" />
+      <input type="number" name="num" /></br>
       <button type="submit">Add</button>
+      </div>
     </form>
     <table>
-      <tr>
-        <th>Name</th>
-        <th>Scent</th>
-        <th>Amount</th>
-        <th>In Stock</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Scent</th>
+          <th>Amount</th>
+          <th>In Stock</th>
+        </tr>
+      </thead>
       <% output.forEach(object=>{ %>
       <tr>
         <td><%= object.name %></td>
