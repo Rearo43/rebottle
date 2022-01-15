@@ -8,6 +8,27 @@
     <title>Inventory</title>
   </header>
   <body>
+    <form action="/update" method="post">
+      <label for="name">Choose a candle:</label>
+
+      <select name="name" id="name" multiple>
+        <% output.forEach(object=> { %>
+
+        <option value="<%=object.name %>"><%= object.name %></option>
+        <% }) %>
+      </select>
+
+      <input type="radio" id="amount" name="column" value="amount" />
+      <label for="amount">Amount</label><br />
+      <input type="radio" id="num" name="column" value="num" />
+      <label for="num">In Stock</label><br />
+
+      <label for="value">Value</label>
+      <input type="number" name="value" step="0.01"/>
+
+      <button type="submit">Update</button>
+    </form>
+
     <form action="/addInventory" method="post">
       <label for="name">Name</label>
       <input type="text" name="name" />

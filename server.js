@@ -25,6 +25,7 @@ app.get('/scents', scents);
 app.post('/addInventory', addInventory);
 app.post('/addCalc', addCalc);
 app.post('/addScents', addScents);
+app.post('/update', update);
 app.use('*', routeNotFound);
 app.use(bigError);
 
@@ -102,6 +103,25 @@ function scents(req, res) {
       res.render('pages/scents', { output: dataBaseInfo });
     })
     .catch((err) => console.log(err));
+}
+
+function update(req, res) {
+  let input = req.body;
+  // const name = input.name;
+  // const column = input.column;
+  console.log(input);
+  if ((input.column = 'num')) {
+    const SQL = 'UPDATE candles SET num = ($1) WHERE name = ($2)';
+    const param = [input.value, input.name];
+    client.query(SQL, param);
+  }
+  if ((input.column = 'amount')) {
+    const SQL = 'UPDATE candles SET num = ($1) WHERE name = ($2)';
+    const param = [input.value, input.name];
+    client.query(SQL, param);
+  }
+
+  res.redirect('/inventory');
 }
 
 //----------404 Error

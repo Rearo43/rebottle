@@ -3,36 +3,45 @@
   <head>
     <%- include('../layouts/head') %>
     <link rel="stylesheet" href="/styles/home.css" />
-        <script
-    src="https://kit.fontawesome.com/fc85feb03c.js"
-    crossorigin="anonymous"
+    <script
+      src="https://kit.fontawesome.com/fc85feb03c.js"
+      crossorigin="anonymous"
     ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <header>
-      <h1>ReBottle Inventory System </h1>
+    <h1>ReBottle Inventory System</h1>
   </header>
   <body>
     <menu>
-        <ul>
-          <div>
-            <i class="fas fa-calculator"></a></i>
-          </div>
-          <div>
-              <i class="fas fa-fill-drip"><a href="/scent"></a></i>
-            </div>
-            <div>
-                <i class="fas fa-list-ul"><a href="/inventory"></a></i>
-            </div>
-            <div>
-                <i class="fas fa-plus-circle"></i>
-            </div>
-            <div>
-              <i class="fas fa-exclamation-triangle"></i>
-            </div>
-        </ul>
+      <ul>
+        <div>
+          <a href="/calc">
+            <i class="fas fa-calculator"></i>
+          </a>
+        </div>
+        <div>
+          <a href="/scents">
+            <i class="fas fa-fill-drip"></i>
+          </a>
+        </div>
+        <div>
+          <a href="/inventory">
+            <i class="fas fa-list-ul"></i>
+          </a>
+        </div>
+        <div>
+          <i class="fas fa-plus-circle"></i>
+        </div>
+        <div>
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+      </ul>
     </menu>
   </body>
   <footer><%- include('../layouts/footer') %></footer>
