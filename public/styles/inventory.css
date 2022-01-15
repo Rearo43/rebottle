@@ -9,7 +9,10 @@ html {
 
 header {
   height: 20vh;
-  color: aliceblue;
+  color: #fff;
+  font-size: 5vw;
+  margin-left: 5vw;
+  margin-top: 2vh;
 }
 
 table {
@@ -44,22 +47,20 @@ tr {
   font-size: 1.5vw;
 }
 
-/* .updateForm {
-  background-color: #3c3f58;
-} */
-
 /* Add Form */
 
 .addForm {
   width: 25vw;
   height: 25vh;
-  margin-left: 10vw;
+  margin-right: 15vw;
+  margin-bottom: 5vh;
   /* align-items: start; */
   font-size: 2vw;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   float: right;
+  overflow: scroll;
 }
 
 .addF {
@@ -68,15 +69,85 @@ tr {
   padding: 2.5vh;
 }
 
-.addF > button{
+.addF > input{
+  margin-bottom: 1.15vh;
+  width: 8vw;
+}
+
+.addF > button {
   background-color: rgba(78, 70, 70, 0.2);
   width: 5vw;
   height: 4vh;
   border: none;
   color: #fff;
   font-size: 1.25vw;
+  margin-top: 2vh;
 }
 
-.addF > button:hover{
+.addF > button:hover {
   background-color: rgba(168, 216, 69, 1);
+}
+
+/* Update Form */
+
+.updateForm {
+  width: 25vw;
+  height: 25vh;
+  margin-left: 15vw;
+  margin-bottom: 5vh;
+  font-size: 2vw;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  float: left;
+  overflow: scroll;
+}
+
+.updateF {
+  width: max-content;
+  margin: auto;
+  padding: 2.5vh;
+}
+
+select {
+  /* display: none; */
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 4vh;
+  width: 105%;
+  text-align: center;
+  margin: auto;
+  font-size: 1.5vw;
+}
+
+.updateF > input[type='radio'] {
+  size: 30px;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.updateF > button {
+  background-color: rgba(78, 70, 70, 0.2);
+  width: 5vw;
+  height: 4vh;
+  border: none;
+  color: #fff;
+  font-size: 1.25vw;
+  margin-top: 1vh;
+}
+
+.updateF > button:hover {
+  background-color: rgba(168, 216, 69, 1);
+}
+
+.updateF > input{
+  margin-bottom: 1.15vh;
+  width: 5vw;
+}
+
+input[type="text"], input[type="number"]{
+  font-size: 1.5vw;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
 }
