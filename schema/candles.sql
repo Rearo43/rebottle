@@ -7,7 +7,7 @@ CREATE TABLE candles
     name VARCHAR(225),
     scent VARCHAR(225),
     amount DECIMAL(8,2),
-    num DECIMAL(8,2),
+    num NUMERIC,
     UNIQUE(name)
 );
 
