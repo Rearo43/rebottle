@@ -1,3 +1,9 @@
-*{
-    background-color: rgb(122, 122, 138);
+table {
+  background-color: antiquewhite;
+  width: 50%;
+}
+
+tr {
+  border-bottom: solid 1px gray;
+  text-align: center;
 }
