@@ -5,6 +5,7 @@ html {
     rgba(5, 79, 91, 1)
   );
   height: 100%;
+  font-family: 'Mukta', sans-serif;
 }
 
 header {
@@ -53,6 +54,7 @@ tr {
   width: 25vw;
   height: 25vh;
   margin-right: 15vw;
+  margin-top: 10vh;
   margin-bottom: 5vh;
   /* align-items: start; */
   font-size: 2vw;
@@ -69,7 +71,7 @@ tr {
   padding: 2.5vh;
 }
 
-.addF > input{
+.addF > input {
   margin-bottom: 1.15vh;
   width: 8vw;
 }
@@ -95,6 +97,7 @@ tr {
   height: 25vh;
   margin-left: 15vw;
   margin-bottom: 5vh;
+  margin-top: 10vh;
   font-size: 2vw;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.2);
@@ -140,14 +143,51 @@ select {
   background-color: rgba(168, 216, 69, 1);
 }
 
-.updateF > input{
+.updateF > input {
   margin-bottom: 1.15vh;
   width: 5vw;
 }
 
-input[type="text"], input[type="number"]{
+input[type='text'],
+input[type='number'] {
   font-size: 1.5vw;
   background-color: rgba(255, 255, 255, 0.2);
   border: none;
   color: #fff;
+}
+
+menu {
+  height: 20vh;
+  /* background-color: grey; */
+}
+
+ul > div {
+  width: 5vw;
+  /* background-image: linear-gradient(90deg, #2c3531, white); */
+  height: 5vw;
+  /* border-radius: 50%; */
+  text-align: center;
+  line-height: 17vw;
+  display: inline-block;
+  position: relative;
+  box-shadow: 5px 6px 10px 2px rgba(41, 41, 44, 0.2);
+  /* margin-right: 7%; */
+  margin-bottom: 10vh;
+}
+
+a > i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 17%;
+  transform: translate(34%, 70%);
+}
+
+.fas {
+  font-size: 2vw;
+  color: #fff;
+}
+
+div:hover {
+  box-shadow: 5px 6px 10px 2px rgba(0, 0, 0, 0);
 }

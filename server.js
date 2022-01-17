@@ -26,6 +26,7 @@ app.post('/addInventory', addInventory);
 app.post('/addCalc', addCalc);
 app.post('/addScents', addScents);
 app.post('/update', update);
+app.post('/final', final);
 app.use('*', routeNotFound);
 app.use(bigError);
 
@@ -69,6 +70,16 @@ function addCalc(req, res) {
   res.redirect('/calc');
 }
 
+function final(req, res) {
+ let start = parseFloat(req.body.www);
+ console.log(start, "start");
+ let div = start / 16;
+ console.log(div, 'div');
+ let final = (start + div);
+ console.log(final, 'final');
+ res.status(200).render('pages/final', { final: final });
+}
+
 function calc(req, res) {
   let SQL = `SELECT * FROM scent`;
 
@@ -76,8 +87,8 @@ function calc(req, res) {
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
-
-      res.render('pages/scents', { output: dataBaseInfo });
+res.status(200).render('pages/calc', { output: dataBaseInfo });
+      // res.render('pages/calc', { output: dataBaseInfo });
     })
     .catch((err) => console.log(err));
 }

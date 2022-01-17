@@ -5,23 +5,26 @@
     <link rel="stylesheet" href="/styles/base.css" />
   </head>
   <header>
-    <title>Scents</title>
+    <title>Candles</title>
   </header>
   <body>
-    <form action="/addCalc" method="post">
+    <form action="/final" method="post">
+    <!-- <form> -->
       <label for="candle">Choose a candle:</label>
 
-      <select name="candle" id="candle" multiple>
+      <select name="candle" id="candle">
         <% output.forEach(object=> { %>
 
-          <option value="<%=object.name %>"><%= object.name %></option>
+        <option value="<%=object.name %>"><%= object.name %></option>
         <% }) %>
-
+        <label for="candle">First Weight:</label>
+        <input type="number" step="0.01" name="www"/>
       </select>
 
-      <button type="submit">Add</button>
+      <button class="wwwButton"type="submit">Calculate</button>
     </form>
-    <table>
+    <h3 class="answer"></h3>
+    <!-- <table>
       <tr>
         <th>Name</th>
         <th>Amount</th>
@@ -32,7 +35,7 @@
         <td><%= object.amount %></td>
       </tr>
       <% }) %>
-    </table>
+    </table> -->
   </body>
   <footer><%- include('../layouts/footer') %></footer>
   <script
