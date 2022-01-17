@@ -80,6 +80,16 @@ function final(req, res) {
  res.status(200).render('pages/final', { final: final });
 }
 
+function back(req, res) {
+  let start = parseFloat(req.body.www);
+  console.log(start, 'start');
+  let div = start / 16;
+  console.log(div, 'div');
+  let final = start + div;
+  console.log(final, 'final');
+  res.status(200).render('pages/final', { final: final });
+}
+
 function calc(req, res) {
   let SQL = `SELECT * FROM scent`;
 
