@@ -109,15 +109,16 @@ function update(req, res) {
   let input = req.body;
   // const name = input.name;
   // const column = input.column;
-  console.log(input);
-  if ((input.column = 'num')) {
+  console.log(input.column);
+  if (input.column === 'num') {
     const SQL = 'UPDATE candles SET num = ($1) WHERE name = ($2)';
     const param = [input.value, input.name];
+    console.log(param);
     client.query(SQL, param);
-  }
-  if ((input.column = 'amount')) {
-    const SQL = 'UPDATE candles SET num = ($1) WHERE name = ($2)';
+  } else if (input.column === 'amount') {
+    const SQL = 'UPDATE candles SET amount = ($1) WHERE name = ($2)';
     const param = [input.value, input.name];
+    console.log(param);
     client.query(SQL, param);
   }
 
