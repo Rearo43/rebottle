@@ -1,51 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../layouts/head') %>
-    <script
-      src="https://kit.fontawesome.com/fc85feb03c.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="/styles/calc.css" />
-    <link rel="stylesheet" href="/styles/inventory.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <header>
-    <h1>Pour Calculator</h1>
-    <menu>
-      <ul>
-        <div>
-          <a href="/">
-            <i class="fas fa-home"></i>
-          </a>
-        </div>
-        <div>
-          <a href="/scents">
-            <i class="fas fa-fill-drip"></i>
-          </a>
-        </div>
-        <div>
-          <a href="/inventory">
-            <i class="fas fa-list-ul"></i>
-          </a>
-        </div>
-        <div>
-          <a href="/alert">
-            <i class="fas fa-exclamation-triangle"></i>
-          </a>
-        </div>
-      </ul>
-    </menu>
-  </header>
+  <%- include('../layouts/head') %> <%- include('../layouts/header') %>
   <body>
     <form action="/final" method="post">
-      <!-- <form> -->
-      <!-- <label for="candle">Choose a candle:</label> -->
       <div>
         <select name="candle" id="candle">
           <option value="0">Choose a Candle:</option>

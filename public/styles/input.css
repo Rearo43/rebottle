@@ -1,0 +1,31 @@
+form {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 2vw;
+  height: 25vh;
+  margin: auto;
+  margin-top: 8vh;
+  overflow: scroll;
+  width: 25vw;
+}
+
+form > div {
+  margin: auto;
+  margin-top: 1vh;
+  width: fit-content;
+}
+
+select {
+  margin-bottom: 2vh;
+}
+
+button {
+  background-color: rgba(78, 70, 70, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 1.25vw;
+  height: 4vh;
+  margin-top: 5vh;
+  width: fit-content;
+}

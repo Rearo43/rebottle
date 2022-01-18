@@ -49,7 +49,10 @@ function inventory(req, res) {
     .then((results) => {
       let dataBaseInfo = results.rows;
 
-      res.render('pages/inventory', { output: dataBaseInfo });
+      res.render('pages/inventory', {
+        output: dataBaseInfo,
+        title: 'Inventory',
+      });
     })
     .catch((err) => console.log(err));
 }
@@ -62,7 +65,10 @@ function calc(req, res) {
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
-      res.status(200).render('pages/calc', { output: dataBaseInfo });
+      res.status(200).render('pages/calc', {
+        output: dataBaseInfo,
+        title: 'Pour Calculator',
+      });
     })
     .catch((err) => console.log(err));
 }
@@ -76,7 +82,7 @@ function scents(req, res) {
     .then((results) => {
       let dataBaseInfo = results.rows;
 
-      res.render('pages/scents', { output: dataBaseInfo });
+      res.render('pages/scents', { output: dataBaseInfo, title: 'Scents' });
     })
     .catch((err) => console.log(err));
 }
@@ -131,13 +137,12 @@ function addScents(req, res) {
 //----------Update Database
 function update(req, res) {
   let input = req.body;
-  
+
   if (input.column === 'num') {
     const SQL = 'UPDATE candles SET num = ($1) WHERE name = ($2)';
     const param = [input.value, input.name];
-  
-    client.query(SQL, param);
 
+    client.query(SQL, param);
   } else if (input.column === 'amount') {
     const SQL = 'UPDATE candles SET amount = ($1) WHERE name = ($2)';
     const param = [input.value, input.name];
@@ -153,7 +158,8 @@ function final(req, res) {
   let start = parseFloat(req.body.www);
   let div = start / 16;
   let final = start + div;
-  const SQL = 'UPDATE candles SET amount = amount - ' + div + ' WHERE name = ($1)';
+  const SQL =
+    'UPDATE candles SET amount = amount - ' + div + ' WHERE name = ($1)';
   const param = [req.body.candle];
 
   client.query(SQL, param);
