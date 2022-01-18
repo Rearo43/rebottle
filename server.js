@@ -23,6 +23,7 @@ app.get('/', home);
 app.get('/inventory', inventory);
 app.get('/calc', calc);
 app.get('/scents', scents);
+app.get('/alert', alerts);
 
 //----------Post Routes
 app.post('/addInventory', addInventory);
@@ -80,6 +81,20 @@ function scents(req, res) {
     .catch((err) => console.log(err));
 }
 
+//----------Show Scents
+function alerts(req, res) {
+  let SQL = `SELECT * FROM candles`;
+
+  client
+    .query(SQL)
+    .then((results) => {
+      let dataBaseInfo = results.rows;
+
+      res.render('pages/inventory', { output: dataBaseInfo });
+    })
+    .catch((err) => console.log(err));
+}
+
 //--------------------NON-PAGE LINKED ROUTES--------------------
 
 //----------Candles in Database
@@ -116,18 +131,17 @@ function addScents(req, res) {
 //----------Update Database
 function update(req, res) {
   let input = req.body;
-  // const name = input.name;
-  // const column = input.column;
-  console.log(input.column);
+  
   if (input.column === 'num') {
     const SQL = 'UPDATE candles SET num = ($1) WHERE name = ($2)';
     const param = [input.value, input.name];
-    console.log(param);
+  
     client.query(SQL, param);
+
   } else if (input.column === 'amount') {
     const SQL = 'UPDATE candles SET amount = ($1) WHERE name = ($2)';
     const param = [input.value, input.name];
-    console.log(param);
+
     client.query(SQL, param);
   }
 
@@ -137,18 +151,12 @@ function update(req, res) {
 //----------Calculate Final Pour Amount
 function final(req, res) {
   let start = parseFloat(req.body.www);
-  // console.log(start, 'start');
   let div = start / 16;
-  console.log(div, 'div');
   let final = start + div;
-  // console.log(final, 'final');
-  // let SQL = `SELECT amount FROM candles WHERE name = ($1)`;
   const SQL = 'UPDATE candles SET amount = amount - ' + div + ' WHERE name = ($1)';
   const param = [req.body.candle];
-  // console.log(client.query(SQL, param));
+
   client.query(SQL, param);
-  // console.log(answer);
-  // const SQL = 'SELECT candles SET amount = ($1) WHERE name = ($2)';
 
   res.status(200).render('pages/final', { final: final });
 }
