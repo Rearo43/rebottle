@@ -37,7 +37,9 @@ app.use(bigError);
 
 //----------Home
 function home(req, res) {
-  res.status(200).render('pages/home');
+  res
+    .status(200)
+    .render('pages/home', { title: 'ReBottle Inventory Software' });
 }
 
 //----------Show Inventory
