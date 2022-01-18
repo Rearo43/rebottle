@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3005;
 const express = require('express');
 const pg = require('pg');
 const morgan = require('morgan');
-const { CommandCompleteMessage } = require('pg-protocol/dist/messages');
+// const { CommandCompleteMessage } = require('pg-protocol/dist/messages');
 
 const app = express();
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -18,32 +18,25 @@ app.use(express.static('./public'));
 
 app.set('view engine', 'ejs');
 
+//----------GET Routes
 app.get('/', home);
 app.get('/inventory', inventory);
 app.get('/calc', calc);
 app.get('/scents', scents);
+
+//----------Post Routes
 app.post('/addInventory', addInventory);
 app.post('/addCalc', addCalc);
 app.post('/addScents', addScents);
 app.post('/update', update);
 app.post('/final', final);
+
 app.use('*', routeNotFound);
 app.use(bigError);
 
 //----------Home
 function home(req, res) {
   res.status(200).render('pages/home');
-}
-
-//----------Candles in Database
-function addInventory(req, res) {
-  let input = req.body;
-  const SQL =
-    'INSERT INTO candles (name, scent, amount, num) VALUES ($1, $2, $3, $4)';
-  const param = [input.name, input.scent, input.amount, input.num];
-
-  client.query(SQL, param);
-  res.redirect('/inventory');
 }
 
 //----------Show Inventory
@@ -60,58 +53,19 @@ function inventory(req, res) {
     .catch((err) => console.log(err));
 }
 
-//----------Change Database With Calculation
-function addCalc(req, res) {
-  let input = req.body;
-  const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
-  const param = [input.name, input.amount];
-
-  client.query(SQL, param);
-  res.redirect('/calc');
-}
-
-function final(req, res) {
- let start = parseFloat(req.body.www);
- console.log(start, "start");
- let div = start / 16;
- console.log(div, 'div');
- let final = (start + div);
- console.log(final, 'final');
- res.status(200).render('pages/final', { final: final });
-}
-
-function back(req, res) {
-  let start = parseFloat(req.body.www);
-  console.log(start, 'start');
-  let div = start / 16;
-  console.log(div, 'div');
-  let final = start + div;
-  console.log(final, 'final');
-  res.status(200).render('pages/final', { final: final });
-}
-
+//----------Pour Calculator
 function calc(req, res) {
-  let SQL = `SELECT * FROM scent`;
+  let SQL = `SELECT * FROM candles`;
 
   client
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
-res.status(200).render('pages/calc', { output: dataBaseInfo });
-      // res.render('pages/calc', { output: dataBaseInfo });
+      res.status(200).render('pages/calc', { output: dataBaseInfo });
     })
     .catch((err) => console.log(err));
 }
 
-//----------Scents in Database
-function addScents(req, res) {
-  let input = req.body;
-  const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
-  const param = [input.name, input.amount];
-
-  client.query(SQL, param);
-  res.redirect('/scents');
-}
 //----------Show Scents
 function scents(req, res) {
   let SQL = `SELECT * FROM scent`;
@@ -126,6 +80,40 @@ function scents(req, res) {
     .catch((err) => console.log(err));
 }
 
+//--------------------NON-PAGE LINKED ROUTES--------------------
+
+//----------Candles in Database
+function addInventory(req, res) {
+  let input = req.body;
+  const SQL =
+    'INSERT INTO candles (name, scent, amount, num) VALUES ($1, $2, $3, $4)';
+  const param = [input.name, input.scent, input.amount, input.num];
+
+  client.query(SQL, param);
+  res.redirect('/inventory');
+}
+
+// ----------Change Database With Calculation
+function addCalc(req, res) {
+  let input = req.body;
+  const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
+  const param = [input.name, input.amount];
+
+  client.query(SQL, param);
+  res.redirect('/calc');
+}
+
+//----------Scents in Database
+function addScents(req, res) {
+  let input = req.body;
+  const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
+  const param = [input.name, input.amount];
+
+  client.query(SQL, param);
+  res.redirect('/scents');
+}
+
+//----------Update Database
 function update(req, res) {
   let input = req.body;
   // const name = input.name;
@@ -146,6 +134,24 @@ function update(req, res) {
   res.redirect('/inventory');
 }
 
+//----------Calculate Final Pour Amount
+function final(req, res) {
+  let start = parseFloat(req.body.www);
+  // console.log(start, 'start');
+  let div = start / 16;
+  console.log(div, 'div');
+  let final = start + div;
+  // console.log(final, 'final');
+  // let SQL = `SELECT amount FROM candles WHERE name = ($1)`;
+  const SQL = 'UPDATE candles SET amount = amount - ' + div + ' WHERE name = ($1)';
+  const param = [req.body.candle];
+  // console.log(client.query(SQL, param));
+  client.query(SQL, param);
+  // console.log(answer);
+  // const SQL = 'SELECT candles SET amount = ($1) WHERE name = ($2)';
+
+  res.status(200).render('pages/final', { final: final });
+}
 //----------404 Error
 function routeNotFound(req, res) {
   res.status(404).send('Route NOT Be Found!');
