@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../layouts/head') %> <%- include('../layouts/header') %>
+  <body>
+    <form action="/addScents" method="post">
+      <div class="addF">
+        <label for="name">Scent:</label>
+        <input type="text" name="name" /><br />
+        <label for="association">Association:</label>
+        <input type="text" name="association" /><br />
+        <button type="submit">Add</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Scent</th>
+          <th>Association</th>
+        </tr>
+      </thead>
+      <% output.forEach(object=>{ %>
+      <tr>
+        <td><%= object.name %></td>
+        <td><%= object.association %></td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+  <footer><%- include('../layouts/footer') %></footer>
+</html>

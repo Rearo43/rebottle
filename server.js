@@ -23,7 +23,7 @@ app.get('/', home);
 app.get('/inventory', inventory);
 app.get('/calc', calc);
 app.get('/scents', scents);
-app.get('/alert', alerts);
+app.get('/alerts', alerts);
 
 //----------Post Routes
 app.post('/addInventory', addInventory);
@@ -37,9 +37,17 @@ app.use(bigError);
 
 //----------Home
 function home(req, res) {
-  res
-    .status(200)
-    .render('pages/home', { title: 'ReBottle Inventory Software' });
+  res.status(200).render('pages/home', {
+    title: 'ReBottle Inventory Software',
+    one: 'calc',
+    two: 'inventory',
+    three: 'scents',
+    four: 'alerts',
+    oneA: 'fa-calculator',
+    twoA: 'fa-list-ul',
+    threeA: 'fa-fill-drip',
+    fourA: 'fa-exclamation-triangle',
+  });
 }
 
 //----------Show Inventory
@@ -54,6 +62,14 @@ function inventory(req, res) {
       res.render('pages/inventory', {
         output: dataBaseInfo,
         title: 'Inventory',
+        one: 'calc',
+        two: '',
+        three: 'scents',
+        four: 'alerts',
+        oneA: 'fa-calculator',
+        twoA: 'fa-home',
+        threeA: 'fa-fill-drip',
+        fourA: 'fa-exclamation-triangle',
       });
     })
     .catch((err) => console.log(err));
@@ -70,6 +86,14 @@ function calc(req, res) {
       res.status(200).render('pages/calc', {
         output: dataBaseInfo,
         title: 'Pour Calculator',
+        one: '',
+        two: 'inventory',
+        three: 'scents',
+        four: 'alerts',
+        oneA: 'fa-home',
+        twoA: 'fa-list-ul',
+        threeA: 'fa-fill-drip',
+        fourA: 'fa-exclamation-triangle',
       });
     })
     .catch((err) => console.log(err));
@@ -77,28 +101,50 @@ function calc(req, res) {
 
 //----------Show Scents
 function scents(req, res) {
-  let SQL = `SELECT * FROM scent`;
+  let SQL = `SELECT * FROM scents`;
 
   client
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
 
-      res.render('pages/scents', { output: dataBaseInfo, title: 'Scents' });
+      res.render('pages/scents', {
+        output: dataBaseInfo,
+        title: 'Scents',
+        one: 'calc',
+        two: 'inventory',
+        three: '',
+        four: 'alerts',
+        oneA: 'fa-calculator',
+        twoA: 'fa-list-ul',
+        threeA: 'fa-home',
+        fourA: 'fa-exclamation-triangle',
+      });
     })
     .catch((err) => console.log(err));
 }
 
-//----------Show Scents
+//----------Show Alerts
 function alerts(req, res) {
-  let SQL = `SELECT * FROM candles`;
+  let SQL = `SELECT * FROM candles WHERE amount > 4`;
 
   client
     .query(SQL)
     .then((results) => {
       let dataBaseInfo = results.rows;
 
-      res.render('pages/inventory', { output: dataBaseInfo });
+      res.render('pages/alerts', {
+        output: dataBaseInfo,
+        title: 'Alert',
+        one: 'calc',
+        two: 'inventory',
+        three: 'scents',
+        four: '',
+        oneA: 'fa-calculator',
+        twoA: 'fa-list-ul',
+        threeA: 'fa-fill-drip',
+        fourA: 'fa-home',
+      });
     })
     .catch((err) => console.log(err));
 }
@@ -129,8 +175,8 @@ function addCalc(req, res) {
 //----------Scents in Database
 function addScents(req, res) {
   let input = req.body;
-  const SQL = 'INSERT INTO scent (name, amount) VALUES ($1, $2)';
-  const param = [input.name, input.amount];
+  const SQL = 'INSERT INTO scents (name, association) VALUES ($1, $2)';
+  const param = [input.name, input.association];
 
   client.query(SQL, param);
   res.redirect('/scents');
