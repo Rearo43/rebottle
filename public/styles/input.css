@@ -1,0 +1,71 @@
+form {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 2vw;
+  height: 25vh;
+  margin: auto;
+  overflow: scroll;
+  width: 25vw;
+}
+
+form > div {
+  margin: auto;
+  margin-top: 1vh;
+  width: fit-content;
+}
+
+select {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 1.5vw;
+  height: 4vh;
+  margin: auto;
+  text-align: center;
+  width: 105%;
+}
+
+input[type='radio'] {
+  height: 1.25em;
+  size: 30px;
+  width: 1.25em;
+}
+
+input {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 1.5vw;
+  margin-bottom: 1vh;
+  width: 8vw;
+}
+
+button {
+  background-color: rgba(78, 70, 70, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 1.25vw;
+  height: 4vh;
+  margin-bottom: 1vh;
+  margin-top: 3vh;
+  width: fit-content;
+}
+
+button:hover {
+  background-color: rgba(168, 216, 69, 1);
+}
+
+/* ---------- INVENTORY ---------- */
+
+.addForm {
+  float: right;
+  margin-bottom: 5vh;
+  margin-right: 15vw;
+}
+
+.updateForm {
+  float: left;
+  margin-bottom: 5vh;
+  margin-left: 15vw;
+}

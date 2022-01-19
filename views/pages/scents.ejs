@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../layouts/head') %>
-    <link rel="stylesheet" href="/styles/base.css" />
-  </head>
+  <%- include('../layouts/head') %> <%- include('../layouts/header') %>
   <body>
     <form action="/addScents" method="post">
-      <label for="name">Scent</label>
-      <input type="text" name="name" />
-      <label for="amount">Amount</label>
-      <input type="number" name="amount" step="0.01" />
-      <button type="submit">Add</button>
+      <div class="addF">
+        <label for="name">Scent:</label>
+        <input type="text" name="name" /><br />
+        <label for="association">Association:</label>
+        <input type="text" name="association" /><br />
+        <button type="submit">Add</button>
+      </div>
     </form>
     <table>
-      <tr>
-        <th>Name</th>
-        <th>Amount</th>
-      </tr>
-      <% output.forEach(object =>{ %>
+      <thead>
+        <tr>
+          <th>Scent</th>
+          <th>Association</th>
+        </tr>
+      </thead>
+      <% output.forEach(object=>{ %>
       <tr>
         <td><%= object.name %></td>
-        <td><%= object.amount %></td>
+        <td><%= object.association %></td>
       </tr>
       <% }) %>
     </table>
   </body>
   <footer><%- include('../layouts/footer') %></footer>
-  <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"
-  ></script>
-  <script src="/js/app.js"></script>
 </html>
