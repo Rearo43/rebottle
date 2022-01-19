@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../layouts/head') %> <%- include('../layouts/header') %>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Scent</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <% output.forEach(object=>{ %>
+      <tr>
+        <td><%= object.scent %></td>
+        <td><%= object.amount %></td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+  <footer><%- include('../layouts/footer') %></footer>
+</html>
