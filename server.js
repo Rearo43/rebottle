@@ -24,17 +24,44 @@ app.get('/inventory', inventory);
 app.get('/calc', calc);
 app.get('/scents', scents);
 app.get('/alerts', alerts);
+app.get('/alertsTwo', alertsTwo);
+app.get('/about', about);
 
 //----------Post Routes
 app.post('/addInventory', addInventory);
 app.post('/addCalc', addCalc);
 app.post('/addScents', addScents);
 app.post('/update', update);
+app.post('/updateScents', updateScents);
+app.post('/switch', switchTable);
 app.post('/final', final);
 
 app.use('*', routeNotFound);
 app.use(bigError);
 
+function about(req, res) {
+  let SQL = `SELECT * FROM labels`;
+
+  client
+    .query(SQL)
+    .then((results) => {
+      let dataBaseInfo = results.rows;
+
+      res.render('pages/inventory', {
+        output: dataBaseInfo,
+        title: 'Inventory',
+        one: 'calc',
+        two: '',
+        three: 'scents',
+        four: 'alerts',
+        oneA: 'fa-calculator',
+        twoA: 'fa-home',
+        threeA: 'fa-fill-drip',
+        fourA: 'fa-exclamation-triangle',
+      });
+    })
+    .catch((err) => console.log(err));
+}
 //----------Home
 function home(req, res) {
   res.status(200).render('pages/home', {
@@ -126,7 +153,7 @@ function scents(req, res) {
 
 //----------Show Alerts
 function alerts(req, res) {
-  let SQL = `SELECT * FROM candles WHERE amount > 4`;
+  let SQL = `SELECT * FROM candles WHERE amount < 6`;
 
   client
     .query(SQL)
@@ -136,6 +163,34 @@ function alerts(req, res) {
       res.render('pages/alerts', {
         output: dataBaseInfo,
         title: 'Alert',
+        link: 'alertsTwo',
+        value: 'amount',
+        one: 'calc',
+        two: 'inventory',
+        three: 'scents',
+        four: '',
+        oneA: 'fa-calculator',
+        twoA: 'fa-list-ul',
+        threeA: 'fa-fill-drip',
+        fourA: 'fa-home',
+      });
+    })
+    .catch((err) => console.log(err));
+}
+
+function alertsTwo(req, res) {
+  let SQL = `SELECT * FROM candles WHERE num < 3`;
+
+  client
+    .query(SQL)
+    .then((results) => {
+      let dataBaseInfo = results.rows;
+
+      res.render('pages/alerts', {
+        output: dataBaseInfo,
+        title: 'Alert',
+        link: 'alerts',
+        value: 'num',
         one: 'calc',
         two: 'inventory',
         three: 'scents',
@@ -199,6 +254,43 @@ function update(req, res) {
   }
 
   res.redirect('/inventory');
+}
+
+//----------Update Scents
+function updateScents(req, res) {
+  let input = req.body;
+  console.log(input);
+  const SQL = 'UPDATE scents SET association = ($1) WHERE name = ($2)';
+  const param = [input.update, input.name];
+
+  client.query(SQL, param);
+
+  res.redirect('/scents');
+}
+
+//----------Switch Alert Table
+function switchTable(req, res) {
+  let SQL = `SELECT * FROM candles WHERE num < 3`;
+
+  client
+    .query(SQL)
+    .then((results) => {
+      let dataBaseInfo = results.rows;
+
+      res.render('pages/alerts', {
+        output: dataBaseInfo,
+        title: 'Alert',
+        one: 'calc',
+        two: 'inventory',
+        three: 'scents',
+        four: '',
+        oneA: 'fa-calculator',
+        twoA: 'fa-list-ul',
+        threeA: 'fa-fill-drip',
+        fourA: 'fa-home',
+      });
+    })
+    .catch((err) => console.log(err));
 }
 
 //----------Calculate Final Pour Amount

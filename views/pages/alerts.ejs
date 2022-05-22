@@ -2,6 +2,9 @@
 <html lang="en">
   <%- include('../layouts/head') %> <%- include('../layouts/header') %>
   <body>
+    <!-- <a href="/<%= link %>"> -->
+      <button type="submit" action="/switch" method="post">Switch Table</button>
+    </a>
     <table>
       <thead>
         <tr>
@@ -12,10 +15,10 @@
       <% output.forEach(object=>{ %>
       <tr>
         <td><%= object.scent %></td>
-        <td><%= object.amount %></td>
+        <td><%= object.<%= value %> %></td>
       </tr>
       <% }) %>
     </table>
   </body>
-  <footer><%- include('../layouts/footer') %></footer>
+  <%- include('../layouts/footer') %>
 </html>

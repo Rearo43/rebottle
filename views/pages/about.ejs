@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../layouts/head') %> <%- include('../layouts/header') %>
+  <link rel="stylesheet" href="/styles/cards.css" />
+  <body>
+    <form class="" action="" method="">
+      <div class="updateF">
+        <div class="select">
+          <select name="name" id="name">
+            <option value="0">Choose a Candle:</option>
+            <% output.forEach(object=> { %>
+            <option value="<%=object.name %>"><%= object.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <br />
+        <label for="value">Value</label>
+        <input type="number" name="value" />
+        <br />
+        <button type="submit">Update</button>
+      </div>
+    </form>
+    <div class="card">
+      <img src="/img/lostonlopez.JPEG" alt="" />
+      <br />
+      <h3>Lost on Lopez</h3>
+      <label for="">A Thousand Wishes</label>
+      <p>Glass: <strong>Thick</strong></p>
+      <p>Number of Labels: <strong>#</strong></p>
+    </div>
+    <div class="card">
+      <img src="/img/theusualforecast.JPEG" alt="" />
+      <br />
+      <h3>The Usual Forecast</h3>
+      <label for="">Rain</label>
+      <p>Glass: <strong>Thin</strong></p>
+      <p>Number of Labels: <strong>#</strong></p>
+    </div>
+    <div class="card">
+      <img src="/img/sticks&stories.JPEG" alt="" />
+      <br />
+      <h3>Sticks & Stories</h3>
+      <label for="">Campfire</label>
+      <p>Glass: <strong>Thick</strong></p>
+      <p>Number of Labels: <strong>#</strong></p>
+    </div>
+  </body>
+  <%- include('../layouts/footer') %>
+</html>

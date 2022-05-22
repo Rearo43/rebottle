@@ -23,13 +23,13 @@ select {
   height: 4vh;
   margin: auto;
   text-align: center;
-  width: 105%;
+  width: 15vw;
 }
 
 input[type='radio'] {
-  height: 1.25em;
+  height: 0.75em;
   size: 30px;
-  width: 1.25em;
+  width: 0.75em;
 }
 
 input {

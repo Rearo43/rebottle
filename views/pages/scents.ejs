@@ -2,12 +2,31 @@
 <html lang="en">
   <%- include('../layouts/head') %> <%- include('../layouts/header') %>
   <body>
-    <form action="/addScents" method="post">
-      <div class="addF">
+    <form class="updateForm" action="/updateScents" method="post">
+      <div>
+        <div class="select">
+          <select name="name" id="name">
+            <option value="0">Choose a Candle:</option>
+            <% output.forEach(object=> { %>
+            <option value="<%=object.name %>"><%= object.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <br />
+        <label for="update">Association:</label>
+        <input type="text" name="update" />
+        <br />
+        <button type="submit">Update</button>
+      </div>
+    </form>
+    <form class="addForm" action="/addScents" method="post">
+      <div>
         <label for="name">Scent:</label>
-        <input type="text" name="name" /><br />
+        <input type="text" name="name" />
+        <br />
         <label for="association">Association:</label>
-        <input type="text" name="association" /><br />
+        <input type="text" name="association" />
+        <br />
         <button type="submit">Add</button>
       </div>
     </form>
@@ -26,5 +45,5 @@
       <% }) %>
     </table>
   </body>
-  <footer><%- include('../layouts/footer') %></footer>
+  <%- include('../layouts/footer') %>
 </html>
